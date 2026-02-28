@@ -1,4 +1,4 @@
-package test
+package tools
 
 import (
 	"context"
@@ -10,11 +10,11 @@ import (
 	"testing"
 
 	"github.com/joakimcarlsson/ai/tool"
-	"github.com/joakimcarlsson/squeeze/internal/tools"
+	sqtools "github.com/joakimcarlsson/squeeze/internal/tools"
 )
 
 func TestFetchWebpage_Info(t *testing.T) {
-	f := tools.NewFetch()
+	f := sqtools.NewFetch()
 	info := f.Info()
 	if info.Name != "fetch_webpage" {
 		t.Fatalf("expected name fetch_webpage, got %s", info.Name)
@@ -22,7 +22,7 @@ func TestFetchWebpage_Info(t *testing.T) {
 }
 
 func TestFetchWebpage_EmptyURL(t *testing.T) {
-	f := tools.NewFetch()
+	f := sqtools.NewFetch()
 	resp, err := f.Run(
 		context.Background(),
 		makeCall("fetch_webpage", `{"url":""}`),
@@ -47,7 +47,7 @@ func TestFetchWebpage_BasicHTML(t *testing.T) {
 	)
 	defer srv.Close()
 
-	f := tools.NewFetch()
+	f := sqtools.NewFetch()
 	input := fmt.Sprintf(`{"url":"%s"}`, srv.URL)
 	resp, err := f.Run(
 		context.Background(),
@@ -91,7 +91,7 @@ func TestFetchWebpage_Non200(t *testing.T) {
 	)
 	defer srv.Close()
 
-	f := tools.NewFetch()
+	f := sqtools.NewFetch()
 	input := fmt.Sprintf(`{"url":"%s"}`, srv.URL)
 	resp, err := f.Run(
 		context.Background(),
@@ -120,7 +120,7 @@ func TestFetchWebpage_StripsScriptTags(t *testing.T) {
 	)
 	defer srv.Close()
 
-	f := tools.NewFetch()
+	f := sqtools.NewFetch()
 	input := fmt.Sprintf(`{"url":"%s"}`, srv.URL)
 	resp, err := f.Run(
 		context.Background(),
@@ -157,7 +157,7 @@ func TestFetchWebpage_PreservesLinks(t *testing.T) {
 	)
 	defer srv.Close()
 
-	f := tools.NewFetch()
+	f := sqtools.NewFetch()
 	input := fmt.Sprintf(`{"url":"%s"}`, srv.URL)
 	resp, err := f.Run(
 		context.Background(),

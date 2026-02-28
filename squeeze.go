@@ -50,5 +50,6 @@ func Tools() []tool.BaseTool {
 		tools.NewBash(),
 		tools.NewWebSearch(),
 		tools.NewFetch(),
+		tools.NewHTTPProbe(),
 	}
 }

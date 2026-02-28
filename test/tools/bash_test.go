@@ -1,20 +1,15 @@
-package test
+package tools
 
 import (
 	"context"
 	"encoding/json"
 	"testing"
 
-	"github.com/joakimcarlsson/ai/tool"
-	"github.com/joakimcarlsson/squeeze/internal/tools"
+	sqtools "github.com/joakimcarlsson/squeeze/internal/tools"
 )
 
-func makeCall(name, input string) tool.ToolCall {
-	return tool.ToolCall{ID: "test-1", Name: name, Input: input}
-}
-
 func TestRunBash_Info(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	info := s.Info()
 	if info.Name != "run_bash" {
 		t.Fatalf("expected name run_bash, got %s", info.Name)
@@ -22,7 +17,7 @@ func TestRunBash_Info(t *testing.T) {
 }
 
 func TestRunBash_EchoStdout(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("run_bash", `{"command":"echo hello"}`),
@@ -51,7 +46,7 @@ func TestRunBash_EchoStdout(t *testing.T) {
 }
 
 func TestRunBash_Stderr(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("run_bash", `{"command":"echo err >&2"}`),
@@ -74,7 +69,7 @@ func TestRunBash_Stderr(t *testing.T) {
 }
 
 func TestRunBash_NonZeroExitCode(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("run_bash", `{"command":"exit 42"}`),
@@ -98,7 +93,7 @@ func TestRunBash_NonZeroExitCode(t *testing.T) {
 }
 
 func TestRunBash_Timeout(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("run_bash", `{"command":"sleep 10","timeout_seconds":1}`),
@@ -120,7 +115,7 @@ func TestRunBash_Timeout(t *testing.T) {
 }
 
 func TestRunBash_EmptyCommand(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("run_bash", `{"command":""}`),
@@ -134,7 +129,7 @@ func TestRunBash_EmptyCommand(t *testing.T) {
 }
 
 func TestRunBash_StdoutAndStderr(t *testing.T) {
-	s := tools.NewBash()
+	s := sqtools.NewBash()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("run_bash", `{"command":"echo out && echo err >&2"}`),

@@ -1,4 +1,4 @@
-package test
+package tools
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"github.com/joakimcarlsson/ai/tool"
-	"github.com/joakimcarlsson/squeeze/internal/tools"
+	sqtools "github.com/joakimcarlsson/squeeze/internal/tools"
 )
 
 const fakeSearchHTML = `<html><body>
@@ -44,7 +44,7 @@ func fakeSearchServer(html string) *httptest.Server {
 }
 
 func TestWebSearch_Info(t *testing.T) {
-	s := tools.NewWebSearch()
+	s := sqtools.NewWebSearch()
 	info := s.Info()
 	if info.Name != "web_search" {
 		t.Fatalf("expected name web_search, got %s", info.Name)
@@ -52,7 +52,7 @@ func TestWebSearch_Info(t *testing.T) {
 }
 
 func TestWebSearch_EmptyQuery(t *testing.T) {
-	s := tools.NewWebSearch()
+	s := sqtools.NewWebSearch()
 	resp, err := s.Run(
 		context.Background(),
 		makeCall("web_search", `{"query":""}`),
@@ -70,7 +70,7 @@ func TestWebSearch_LiveQuery(t *testing.T) {
 		t.Skip("skipping live DDG query in short mode")
 	}
 
-	s := tools.NewWebSearch()
+	s := sqtools.NewWebSearch()
 	resp, err := s.Run(context.Background(), tool.ToolCall{
 		ID:    "t1",
 		Name:  "web_search",
@@ -112,7 +112,7 @@ func TestWebSearch_ParsesResults(t *testing.T) {
 	srv := fakeSearchServer(fakeSearchHTML)
 	defer srv.Close()
 
-	s := tools.NewWebSearchWithEndpoints("", srv.URL)
+	s := sqtools.NewWebSearchWithEndpoints("", srv.URL)
 	resp, err := s.Run(context.Background(), tool.ToolCall{
 		ID:    "t1",
 		Name:  "web_search",
@@ -157,7 +157,7 @@ func TestWebSearch_LimitResults(t *testing.T) {
 	srv := fakeSearchServer(fakeSearchHTML)
 	defer srv.Close()
 
-	s := tools.NewWebSearchWithEndpoints("", srv.URL)
+	s := sqtools.NewWebSearchWithEndpoints("", srv.URL)
 	resp, err := s.Run(context.Background(), tool.ToolCall{
 		ID:    "t1",
 		Name:  "web_search",
@@ -184,7 +184,7 @@ func TestWebSearch_NoResults(t *testing.T) {
 	)
 	defer srv.Close()
 
-	s := tools.NewWebSearchWithEndpoints("", srv.URL)
+	s := sqtools.NewWebSearchWithEndpoints("", srv.URL)
 	resp, err := s.Run(context.Background(), tool.ToolCall{
 		ID:    "t1",
 		Name:  "web_search",
@@ -214,7 +214,7 @@ func TestWebSearch_HTMLEntities(t *testing.T) {
 	srv := fakeSearchServer(htmlWithEntities)
 	defer srv.Close()
 
-	s := tools.NewWebSearchWithEndpoints("", srv.URL)
+	s := sqtools.NewWebSearchWithEndpoints("", srv.URL)
 	resp, err := s.Run(context.Background(), tool.ToolCall{
 		ID:    "t1",
 		Name:  "web_search",
@@ -265,7 +265,7 @@ func TestWebSearch_SkipsAds(t *testing.T) {
 	srv := fakeSearchServer(htmlWithAds)
 	defer srv.Close()
 
-	s := tools.NewWebSearchWithEndpoints("", srv.URL)
+	s := sqtools.NewWebSearchWithEndpoints("", srv.URL)
 	resp, err := s.Run(context.Background(), tool.ToolCall{
 		ID:    "t1",
 		Name:  "web_search",
