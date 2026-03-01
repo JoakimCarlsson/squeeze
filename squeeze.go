@@ -52,5 +52,6 @@ func Tools() []tool.BaseTool {
 		tools.NewFetch(),
 		tools.NewHTTPProbe(),
 		tools.NewTechFingerprint(),
+		tools.NewPortScan(),
 	}
 }
