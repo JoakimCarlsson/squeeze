@@ -51,5 +51,6 @@ func Tools() []tool.BaseTool {
 		tools.NewWebSearch(),
 		tools.NewFetch(),
 		tools.NewHTTPProbe(),
+		tools.NewTechFingerprint(),
 	}
 }
