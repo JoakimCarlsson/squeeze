@@ -55,5 +55,6 @@ func Tools() []tool.BaseTool {
 		tools.NewPortScan(),
 		tools.NewCVELookup(),
 		tools.NewDNSLookup(),
+		tools.NewJWTInspect(),
 	}
 }
