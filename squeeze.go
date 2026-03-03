@@ -57,5 +57,6 @@ func Tools() []tool.BaseTool {
 		tools.NewDNSLookup(),
 		tools.NewJWTInspect(),
 		tools.NewSSLInfo(),
+		tools.NewWhois(),
 	}
 }
