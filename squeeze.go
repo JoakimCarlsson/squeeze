@@ -56,5 +56,7 @@ func Tools() []tool.BaseTool {
 		tools.NewCVELookup(),
 		tools.NewDNSLookup(),
 		tools.NewJWTInspect(),
+		tools.NewSSLInfo(),
+		tools.NewWhois(),
 	}
 }
