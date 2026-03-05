@@ -37,9 +37,11 @@ func NewAgent(llmClient llm.LLM, opts ...Option) *agent.Agent {
 	allTools = append(allTools, cfg.extraTools...)
 
 	agentOpts := []agent.AgentOption{
-		agent.WithSystemPrompt(prompt.SystemPrompt),
 		agent.WithTools(allTools...),
+		agent.WithSystemPrompt(prompt.SystemPrompt),
+		agent.WithSubAgents(defaultSubAgents(llmClient)...),
 	}
+
 	agentOpts = append(agentOpts, cfg.agentOpts...)
 
 	return agent.New(llmClient, agentOpts...)
