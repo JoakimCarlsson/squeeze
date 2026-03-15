@@ -26,7 +26,10 @@ func NewJWTInspect() *JWTInspectTool {
 func (t *JWTInspectTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"jwt_inspect",
-		"Decode a JWT without verification and return its header, payload, and expiry status. Optionally test for the alg:none vulnerability by producing a forged token with no signature.",
+		`Decode a JWT without verification and return its header, payload, and expiry status.
+Optionally test for the alg:none vulnerability by producing a forged token with no signature.
+Use this when you find JWTs in cookies, Authorization headers, or API responses.
+Does not verify signatures — use this for analysis, not validation.`,
 		JWTInspectParams{},
 	)
 }

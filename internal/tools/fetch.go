@@ -31,7 +31,10 @@ func NewFetch() *FetchTool {
 func (t *FetchTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"fetch_webpage",
-		"Fetch a URL and return the page content as Markdown. Use to read CVE pages, documentation, advisories, or any web page relevant to the engagement.",
+		`Fetch a URL and return the page content as cleaned Markdown.
+Use to read CVE detail pages, vendor advisories, documentation, or any web page relevant to the engagement.
+Strips navigation, ads, and boilerplate.
+For testing HTTP endpoints with full request/response control, use http_probe instead.`,
 		FetchParams{},
 	)
 }

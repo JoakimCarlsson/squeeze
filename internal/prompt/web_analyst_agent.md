@@ -57,8 +57,8 @@ For every identified technology and version:
 - Analyze API responses: Do they include more fields than the UI displays? Internal IDs, email addresses, roles, timestamps that shouldn't be exposed?
 - Check error handling: Do errors reveal stack traces, SQL queries, file paths, or framework versions?
 
-### Scripted Analysis
-Use docker_write_file and docker_run_python when you need to test many endpoints programmatically — e.g., fuzzing parameters across dozens of routes, scripting authentication bypass checks, or writing custom parsers for API responses. The Docker container has internet access and starts automatically on first use.
+### Scripted Analysis (Docker)
+Use docker_write_file and docker_run_python for testing many endpoints programmatically — e.g., fuzzing parameters across dozens of routes, scripting authentication bypass checks across an entire API surface, or writing custom response parsers. The Docker container has internet access, Python 3.12, and packages like requests, httpx, beautifulsoup4, and pyjwt. Do not use docker tools for anything related to device instrumentation — you do not have device tools.
 
 ### CORS, CSRF, and Cross-Origin Issues
 - Test CORS by sending requests with different Origin headers. Check if the origin is reflected, if credentials are allowed, if null origin is accepted.

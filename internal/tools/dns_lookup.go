@@ -39,13 +39,13 @@ func NewDNSLookup() *DNSLookupTool {
 func (t *DNSLookupTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"dns_lookup",
-		"Perform DNS lookups against a target host and return structured results. "+
-			"Supports record types: A, AAAA, MX, TXT, CNAME, NS, SOA, PTR, SRV, AXFR. "+
-			"Can enumerate subdomains using a built-in wordlist. "+
-			"Returns per-record type, TTL, value, and type-specific fields (priority, SOA serial/refresh/retry/expire, SRV port/weight). "+
-			"Use PTR with an IP address for reverse DNS lookups. "+
-			"Use AXFR to attempt a zone transfer. "+
-			"Defaults to A record lookup with 8.8.8.8:53 resolver.",
+		`Perform DNS lookups against a target host and return structured results.
+Supports record types: A, AAAA, MX, TXT, CNAME, NS, SOA, PTR, SRV, AXFR.
+Can enumerate subdomains using a built-in wordlist.
+Returns per-record type, TTL, value, and type-specific fields (priority, SOA serial/refresh/retry/expire, SRV port/weight).
+Use PTR with an IP address for reverse DNS lookups.
+Use AXFR to attempt a zone transfer.
+Defaults to A record lookup with 8.8.8.8:53 resolver.`,
 		DNSLookupParams{},
 	)
 }

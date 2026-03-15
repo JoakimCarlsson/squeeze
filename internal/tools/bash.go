@@ -26,7 +26,9 @@ func NewBash() *BashTool {
 func (t *BashTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"run_bash",
-		"Execute an arbitrary bash command and return stdout, stderr, and exit code.",
+		`Execute a bash command on the host machine and return stdout, stderr, and exit code.
+Use for running system tools like curl, nmap, sqlmap, or any CLI utility not covered by other tools.
+Commands run on the host, not inside the Docker container or on the target device.`,
 		BashParams{},
 	)
 }

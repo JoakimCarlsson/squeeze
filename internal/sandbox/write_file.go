@@ -22,7 +22,11 @@ type WriteFileTool struct {
 func (t *WriteFileTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"docker_write_file",
-		"Create or overwrite a file inside the isolated Docker container. Use for Python scripts, wordlists, config files, or any data needed for security testing. NOT for Frida scripts or device files. Auto-lints .py files with py_compile.",
+		`Create or overwrite a file inside the Docker container.
+Use this to write Python scripts (.py), wordlists, config files, or any data that docker_run_python will consume.
+The Docker container is a completely separate environment from the target device — files written here cannot be accessed by Frida, the app, or any on-device tool.
+Do not use this for Frida scripts, TypeScript files, or anything intended to run on the target device.
+Automatically lints .py files with py_compile and reports syntax errors.`,
 		writeFileParams{},
 	)
 }

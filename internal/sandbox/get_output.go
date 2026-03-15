@@ -21,7 +21,10 @@ type GetOutputTool struct {
 func (t *GetOutputTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"docker_get_output",
-		"Read stdout/stderr from a long-running Python script in the Docker container. Use the run_id from a timed-out docker_run_python call.",
+		`Read stdout and stderr from a long-running Python script in the Docker container.
+Use the run_id returned by docker_run_python when a script times out — the timed-out script continues running in the background and this tool polls its output.
+Only reads output from Docker container processes.
+For Frida script output, use get_script_output instead.`,
 		getOutputParams{},
 	)
 }

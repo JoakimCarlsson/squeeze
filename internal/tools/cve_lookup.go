@@ -134,9 +134,9 @@ func NewCVELookupWithURL(baseURL string) *CVELookupTool {
 func (t *CVELookupTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"cve_lookup",
-		"Search the NIST National Vulnerability Database (NVD) for known CVEs affecting a product. "+
-			"Returns CVEs sorted by CVSS severity score (highest first) with descriptions, scores, and references. "+
-			"Use after tech_fingerprint or port_scan to check discovered technologies for known vulnerabilities.",
+		`Search the NIST National Vulnerability Database (NVD) for known CVEs affecting a product.
+Returns CVEs sorted by CVSS severity score (highest first) with descriptions, scores, and references.
+Use after tech_fingerprint or port_scan to check discovered technologies for known vulnerabilities.`,
 		CVELookupParams{},
 	)
 }

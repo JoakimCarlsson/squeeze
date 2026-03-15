@@ -25,7 +25,11 @@ type RunScriptTool struct {
 func (t *RunScriptTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"docker_run_python",
-		"Execute a Python script inside the isolated Docker container. Pre-installed packages: requests, httpx, aiohttp, pwntools, impacket, cryptography, scapy, paramiko. Returns stdout, stderr, exit code.",
+		`Execute a Python script inside the Docker container and return stdout, stderr, exit code, and duration.
+The container has internet access and pre-installed packages: requests, httpx, aiohttp, pwntools, impacket, cryptography, pyjwt, scapy, paramiko, beautifulsoup4, lxml.
+Use this for batch HTTP probing, exploit scripts, data processing, and any multi-step automation that would be inefficient as individual tool calls.
+This runs Python in Docker — it cannot run Frida scripts, TypeScript, or JavaScript.
+For device instrumentation, use run_frida_script instead.`,
 		runScriptParams{},
 	)
 }

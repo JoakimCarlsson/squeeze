@@ -60,7 +60,8 @@ func NewWebSearchWithEndpoints(_, searchURL string) *WebSearchTool {
 func (t *WebSearchTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"web_search",
-		"Search the web via DuckDuckGo and return ranked results with title, URL, and snippet. Use to look up CVEs, research targets, or find known vulnerability patterns.",
+		`Search the web via DuckDuckGo and return ranked results with title, URL, and snippet.
+Use to research targets, look up CVEs by product name, find known vulnerability patterns, locate public exploit code, or discover breach disclosures related to the target.`,
 		WebSearchParams{},
 	)
 }

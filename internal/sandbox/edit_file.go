@@ -23,7 +23,11 @@ type EditFileTool struct {
 func (t *EditFileTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"docker_edit_file",
-		"Edit a file inside the Docker container using string replacement. The old_str must appear exactly once. Auto-lints .py files.",
+		`Edit an existing file inside the Docker container using exact string replacement.
+The old_str must appear exactly once in the file — include surrounding context to disambiguate if needed.
+Use this to iterate on Python scripts after reviewing docker_run_python output.
+Only affects files inside the Docker container — cannot edit files on the target device.
+Automatically lints .py files with py_compile.`,
 		editFileParams{},
 	)
 }

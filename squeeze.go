@@ -37,7 +37,6 @@ func NewAgent(llmClient llm.LLM, opts ...Option) *agent.Agent {
 	sbx := sandbox.NewManager()
 
 	allTools := Tools()
-	allTools = append(allTools, sbx.Tools()...)
 	allTools = append(allTools, cfg.extraTools...)
 
 	agentOpts := []agent.AgentOption{

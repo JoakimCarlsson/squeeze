@@ -50,13 +50,12 @@ func NewSSLInfo() *SSLInfoTool {
 func (t *SSLInfoTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"ssl_info",
-		"Connect to a host and retrieve TLS certificate and configuration details. "+
-			"Extracts the subject, SANs (Subject Alternative Names), issuer, validity dates, and serial number from the leaf certificate. "+
-			"SANs frequently expose additional subdomains and internal hostnames not visible in DNS enumeration, "+
-			"making this useful for attack surface mapping. "+
-			"Reports the negotiated TLS version (TLS 1.0/1.1 are findings) and cipher suite. "+
-			"Detects self-signed and expired certificates. "+
-			"Optionally probes whether the server accepts TLS 1.0 or TLS 1.1 connections.",
+		`Connect to a host and retrieve TLS certificate and configuration details.
+Extracts the subject, SANs (Subject Alternative Names), issuer, validity dates, and serial number from the leaf certificate.
+SANs frequently expose additional subdomains and internal hostnames not visible in DNS enumeration, making this useful for attack surface mapping.
+Reports the negotiated TLS version (TLS 1.0/1.1 are findings) and cipher suite.
+Detects self-signed and expired certificates.
+Optionally probes whether the server accepts TLS 1.0 or TLS 1.1 connections.`,
 		SSLInfoParams{},
 	)
 }
