@@ -5,6 +5,7 @@ import (
 	llm "github.com/joakimcarlsson/ai/providers"
 	"github.com/joakimcarlsson/ai/tool"
 	"github.com/joakimcarlsson/squeeze/internal/prompt"
+	"github.com/joakimcarlsson/squeeze/internal/sandbox"
 	"github.com/joakimcarlsson/squeeze/internal/tools"
 )
 
@@ -33,13 +34,16 @@ func NewAgent(llmClient llm.LLM, opts ...Option) *agent.Agent {
 		o(cfg)
 	}
 
+	sbx := sandbox.NewManager()
+
 	allTools := Tools()
+	allTools = append(allTools, sbx.Tools()...)
 	allTools = append(allTools, cfg.extraTools...)
 
 	agentOpts := []agent.AgentOption{
 		agent.WithTools(allTools...),
 		agent.WithSystemPrompt(prompt.SystemPrompt),
-		agent.WithSubAgents(defaultSubAgents(llmClient)...),
+		agent.WithSubAgents(defaultSubAgents(llmClient, sbx)...),
 	}
 
 	agentOpts = append(agentOpts, cfg.agentOpts...)
