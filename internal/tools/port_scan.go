@@ -88,11 +88,11 @@ func NewPortScan() *PortScanTool {
 func (t *PortScanTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"port_scan",
-		"Run an nmap port scan against a target host and return structured results. "+
-			"Returns per-port state, service name, version, and CPE. "+
-			"Defaults to TCP connect scan (-sT). Enable service_scan for version detection (-sV). "+
-			"Supports custom port ranges, comma-separated ports, or topN (e.g. top100). "+
-			"Requires nmap installed on the host.",
+		`Run an nmap port scan against a target host and return structured results.
+Returns per-port state, service name, version, and CPE.
+Defaults to TCP connect scan (-sT). Enable service_scan for version detection (-sV).
+Supports custom port ranges, comma-separated ports, or topN (e.g. top100).
+Requires nmap installed on the host.`,
 		PortScanParams{},
 	)
 }

@@ -50,6 +50,9 @@ Use whois on all domains and notable IPs:
 - For IPs: identify ASN, hosting provider, CIDR range, abuse contact
 - Cross-reference hosting providers to understand infrastructure layout
 
+### Scripted Recon (Docker)
+Use docker_write_file and docker_run_python for custom recon scripts that would be impractical as individual tool calls — e.g., iterating over a large subdomain list with custom logic, correlating DNS results with port scan data programmatically, or parsing and processing large volumes of output. The Docker container has internet access, Python 3.12, and packages like requests, httpx, and beautifulsoup4. Do not use docker tools for anything related to device instrumentation — you do not have device tools.
+
 ### Open Source Intelligence
 Use web_search to find:
 - Publicly exposed code repositories (GitHub, GitLab, Bitbucket) belonging to the target

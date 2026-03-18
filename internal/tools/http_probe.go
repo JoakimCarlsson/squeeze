@@ -95,11 +95,11 @@ func NewHTTPProbe() *HTTPProbeTool {
 func (t *HTTPProbeTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"http_probe",
-		"Send an arbitrary HTTP request and return the full response including status code, headers, and body. "+
-			"Supports custom methods (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD), request headers, and a raw body. "+
-			"Cookies are persisted across calls — use clearCookies to reset the jar. "+
-			"By default redirects are NOT followed; set followRedirects to true to chase them and receive the full redirect chain. "+
-			"Use for active endpoint probing, authentication flows, SSRF testing, or replaying modified captured requests.",
+		`Send an arbitrary HTTP request and return the full response including status code, headers, and body.
+Supports custom methods (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD), request headers, and a raw body.
+Cookies are persisted across calls — use clearCookies to reset the jar.
+By default redirects are NOT followed; set followRedirects to true to chase them and receive the full redirect chain.
+Use for active endpoint probing, authentication flows, SSRF testing, or replaying modified captured requests.`,
 		HTTPProbeParams{},
 	)
 }

@@ -111,11 +111,11 @@ func NewWhoisWithURLs(bootstrapURL, arinURL string) *WhoisTool {
 func (t *WhoisTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"whois",
-		"Perform WHOIS/RDAP lookups for domains and IP addresses. "+
-			"For domains: returns registrar, org, registration/expiry dates, and name servers. "+
-			"For IPs: returns ASN, org, country, IP range (CIDR), and abuse contact. "+
-			"Uses RDAP (RESTful WHOIS) which returns structured JSON natively. "+
-			"Accepts any domain name (e.g. example.com) or IPv4/IPv6 address.",
+		`Perform WHOIS/RDAP lookups for domains and IP addresses.
+For domains: returns registrar, org, registration/expiry dates, and name servers.
+For IPs: returns ASN, org, country, IP range (CIDR), and abuse contact.
+Uses RDAP (RESTful WHOIS) which returns structured JSON natively.
+Accepts any domain name (e.g. example.com) or IPv4/IPv6 address.`,
 		WhoisParams{},
 	)
 }

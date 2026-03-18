@@ -40,9 +40,9 @@ func NewTechFingerprint() *TechFingerprintTool {
 func (t *TechFingerprintTool) Info() tool.ToolInfo {
 	return tool.NewToolInfo(
 		"tech_fingerprint",
-		"Fingerprint a URL to identify its technology stack: web server, CMS, frameworks, CDN, WAF, and JS libraries. "+
-			"Returns a list of detected technologies with versions and categories, plus a waf_detected flag. "+
-			"Run early in recon to understand what you're dealing with before active probing.",
+		`Fingerprint a URL to identify its technology stack: web server, CMS, frameworks, CDN, WAF, and JS libraries.
+Returns a list of detected technologies with versions and categories, plus a waf_detected flag.
+Run early in recon to understand what you're dealing with before active probing.`,
 		TechFingerprintParams{},
 	)
 }
